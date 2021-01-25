@@ -29,7 +29,7 @@
 <!--    *Mapper.xml로 끝나는 모든 xml을 읽어라-->
 
     <!-- myBatis3 설정 #2 -->
-    <bean id="sqlSessionTemplate"
+    <bean id="sqlSession"
           class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg ref="sqlSessionFactory" index="0" />
     </bean>

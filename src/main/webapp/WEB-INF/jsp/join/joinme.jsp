@@ -20,18 +20,18 @@
     </div> <!-- 제목 -->
     <div class="bg-light card card-body margin1050">
         <div><h3 class="font-weight-bold margin30">일반회원</h3></div>
-        <form name="joinfrm">
+        <form name="joinfrm" id="joinfrm">
             <div class="row">
                 <div class="col-11 offset-1">
                     <div class="form-group row">
                         <label for="name" class="col-form-label col-sm-2 text-right text-danger">이 름</label>
-                        <input type="text" class="form-control border-danger col-sm-2" id="name" readonly>
+                        <input type="text" class="form-control border-danger col-sm-2" id="name" name="name" readonly value="${param.name}">
                     </div><!--이름-->
                     <div class="form-group row">
                         <label for="jumin1" class="col-form-label col-sm-2 text-right text-danger">주민등록번호</label>
-                        <input type="text" class="form-control col-sm-2 border-danger" id="jumin1" name="jumin1" readonly>
+                        <input type="text" class="form-control col-sm-2 border-danger" id="jumin1" name="jumin1" readonly value="${param.jumin1}">
                         <label class="col-form-label border-danger">&nbsp;&ndash;&nbsp;</label>
-                        <input type="text" class="form-control col-sm-2 border-danger" id="jumin2" name="jumin2" readonly>
+                        <input type="password" class="form-control col-sm-2 border-danger" id="jumin2" name="jumin2" readonly value="${param.jumin2}">
                     </div><!--주민번호-->
                     <div class="form-group row">
                         <label for="newuid" class="col-form-label col-sm-2 text-right text-danger">아이디</label>
@@ -106,6 +106,13 @@
                     <button type="button" id="cancelbtn" class="btn btn-danger"><i class="bi bi-x"></i>취소하기</button>
                 </div><!--버튼들-->
             </div>
+
+            <input type="hidden" name="jumin" id="jumin">
+            <input type="hidden" name="zipcode" id="zipcode">
+            <input type="hidden" name="email" id="email">
+            <input type="hidden" name="phone" id="phone">
+
+
         </form>
     </div> <!-- 정보입력 -->
 

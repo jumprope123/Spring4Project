@@ -1,10 +1,17 @@
 package shin.spring.mvc.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import shin.spring.mvc.service.MemberService;
+import shin.spring.mvc.vo.MemberVO;
 
 @Controller
 public class joinController {
+
+    @Autowired
+    private MemberService msrv;
 
     @GetMapping("/join/agree")
     public String agree(){
@@ -16,9 +23,16 @@ public class joinController {
         return "join/checkme.tiles";
     }
 
-    @GetMapping("/join/joinme")
+    @GetMapping("/join/joinme") // 회원가입 폼
     public String joinme(){
         return "join/joinme.tiles";
+    }
+
+    @PostMapping("/join/joinme") // 회원가입처리
+    public String joinmeok(MemberVO mvo){
+        System.out.println(mvo.getName());
+        System.out.println(msrv.newMember(mvo));
+        return "redirect:/join/joinok";
     }
 
     @GetMapping("/join/joinok")
