@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <div id="main">
     <div class="margin30">
-        <h3><img src="/resources/img/glyphicons_043_group.png" style="position: relative; top: -5px">회원가입</h3>
+        <h3><img src="/img/glyphicons_043_group.png" style="position: relative; top: -5px">회원가입</h3>
         <hr>
     </div>
     <nav aria-label="breadcrumb">
@@ -36,7 +36,7 @@
                     <div class="form-group row">
                         <label for="newuid" class="col-form-label col-sm-2 text-right text-danger">아이디</label>
                         <input type="text" class="form-control col-sm-4 border-danger" name="userid" id="newuid" required>
-                        <span class="text-danger col-sm-6 ">&nbsp;&nbsp;6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다.</span>
+                        <span id="uidmsg" class="text-danger col-sm-6 ">&nbsp;&nbsp;6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다.</span>
                     </div>
                     <div class="form-group row">
                         <label for="newpwd" class="col-form-label col-sm-2 text-right text-danger">비밀번호</label>
@@ -54,7 +54,9 @@
                         <label class="col-form-label">&nbsp;-&nbsp;</label>
                         <input type="text" class="form-control col-sm-1 border-danger" id="zip2" name="zip2" readonly>
                         <span>&nbsp;&nbsp;</span>
-                        <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#zipcode"><i class="bi bi-exclamation-circle-fill"></i> 우편번호 찾기</button>
+                        <button type="button" class="btn btn-dark"
+                            data-toggle="modal" data-target="#zipmodal">
+                            <i class="bi bi-exclamation-circle-fill"></i> 우편번호 찾기</button>
                     </div><!--우편번호-->
                     <div class="form-group row">
                         <label for="addr1" class="col-form-label col-sm-2 text-right text-danger">주소</label>
@@ -72,7 +74,7 @@
                         <span>&nbsp;</span>
                         <select id="email3" class="form-control col-sm-2 border-danger">
                             <option selected>선택하세요</option>
-                            <option>naver.com</option>
+                            <option value="naver.com">naver.com</option>
                             <option>gmail.com</option>
                             <option>daum.net</option>
                             <option>hotmail.com</option>
@@ -95,7 +97,7 @@
                     </div><!--전화번호-->
                     <div class="form-group row">
                         <label class="col-form-label col-2 text-right text-danger">자동 가입방지</label>
-                        <img src="/resources/img/google_recaptcha.gif" width="45%" height="45%" style="margin-left: -5px;">
+                        <img src="/img/google_recaptcha.gif" width="45%" height="45%" style="margin-left: -5px;">
                     </div><!--자동가입방지-->
                     <hr>
                 </div>
@@ -117,3 +119,53 @@
     </div> <!-- 정보입력 -->
 
 </div><!--main-->
+
+
+<!--우편번호 찾기 모달-->
+<div id="zipmodal" class="modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">우편번호 찾기</h3>
+                <button type="button" data-dismiss="modal" class="close" aria-label="Close"><span aria-hidden="true"><i class="bi bi-x"></i></span></button>
+            </div>
+            <div class="modal-body">
+                <form id="zipfrm">
+                    <div class="row form-group pushzip justify-content-center">
+                        <label class="text-danger text-right" for="dong" style="margin-top: -5px;">검색하실 주소의<br>동 이름을 입력하세요</label>&nbsp;&nbsp;
+                        <input type="text" id="dong" name="dong" class="form-control border-info col-4">&nbsp;&nbsp;
+                        <span>
+                            <button type="button" id="findbtn" class="btn btn-primary"><i class="bi bi-search"></i> 검색하기</button>
+                        </span>
+                    </div>
+                    <div class="row form-group justify-content-center">
+                        <div class="text-center">
+                            <hr>
+                            <p class="text-warning">지역의 읍/면/동의 이름을 공백없이 입력하신 후, [검색] 버튼을 클릭하세요</p>
+                            <select id="addrlist" name="addrlist" class="form-control" size="10" style="margin :0 auto;">
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                                <option>123-456 서울 종로구 창신동</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-end">
+                <button id="sendbtn" type="button" class="btn btn-danger"><i class="bi bi-check2-circle"></i> 선택하고 닫기</button>
+            </div>
+        </div>
+    </div>
+</div>

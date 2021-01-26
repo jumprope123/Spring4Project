@@ -17,3 +17,5 @@ create table Member (
 -- CRUD
 insert into Member (name, jumin, userid, passwd, zipcode, addr1, addr2, email, phone)
 values(?,?,?,?,?,?,?,?,?);
+
+select userid from Member where userid = 'shon' ;

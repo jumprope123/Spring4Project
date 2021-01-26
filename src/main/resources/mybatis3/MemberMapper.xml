@@ -7,9 +7,16 @@
 
     <insert id="insertMember" statementType="PREPARED" parameterType="shin.spring.mvc.vo.MemberVO">
         insert into Member (name, jumin, userid, passwd, zipcode, addr1, addr2, email, phone)
-        value(#{name},#{jumin},#{userid},#{passwd},#{zipcode},#{addr1},#{addr2},#{email},#{phone});
+        value(#{name},#{jumin},#{userid},#{passwd},#{zipcode},#{addr1},#{addr2},#{email},#{phone})
     </insert>
 
 
+    <select id="zipcode" statementType="PREPARED" parameterType="String" resultType="shin.spring.mvc.vo.ZipcodeVO">
+        select * from zipcode_2013 where dong like #{mydong}
+    </select>
+
+    <select id="checkuid" statementType="PREPARED" parameterType="String" resultType="int">
+        select count(userid) cnt from Member where userid = #{uid}
+    </select>
 
 </mapper>
