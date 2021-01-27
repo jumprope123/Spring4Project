@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <div id="main">
     <div class="margin30">
-        <h3><img src="/resources/img/glyphicons_043_group.png" style="position: relative; top: -5px">회원가입</h3>
+        <h3><img src="/img/glyphicons_043_group.png" style="position: relative; top: -5px">회원가입</h3>
         <hr>
     </div>
     <nav aria-label="breadcrumb">

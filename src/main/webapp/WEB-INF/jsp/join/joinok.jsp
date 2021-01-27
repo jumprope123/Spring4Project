@@ -1,7 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <div id="main">
     <div class="margin30">
-        <h3><img src="/resources/img/glyphicons_043_group.png" style="position: relative; top: -5px">회원가입</h3>
+        <h3><img src="/img/glyphicons_043_group.png" style="position: relative; top: -5px">회원가입</h3>
         <hr>
     </div>
     <nav aria-label="breadcrumb">
@@ -30,6 +30,10 @@
         <p>회원가입 이후 아이디와 비밀번호로 일반회원으로
             로그인 하셔서 추가 인적사항등을 등록해주시기 바랍니다.<br>
             Lorem Ipsum과 함께 즐거운 시간 되십시오</p>
+
+        <p>이름 : ${mvo.name}</p>
+        <p>이메일 : ${mvo.email}</p>
+        <p>가입일시 : ${mvo.regdate}</p>
     </div>
     <div class="text-center">
         <button type="button" id="go2index" class="btn btn-success"><i class="bi bi-house-fill" style="position: relative; top: -3px;"></i>&nbsp;메인으로 이동</button>

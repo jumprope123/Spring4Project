@@ -79,6 +79,7 @@ public class joinController {
         if (gcutil.checkCaptcha(gCaptcha)){
             msrv.newMember(mvo);
             returnPage = "redirect:/join/joinok";
+            rds.addFlashAttribute("mvo",mvo);
         }else {
             rds.addFlashAttribute("checkCaptcha","자동가입방지 확인이 실패했어요");
             rds.addFlashAttribute("mvo",mvo);

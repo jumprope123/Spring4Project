@@ -199,3 +199,7 @@ function checkuid(){
         }); // 비동기 요청 실패시
 }
 
+// joinok
+$('#go2index').on('click',function () {
+    location.href = '/index';
+})
