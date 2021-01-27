@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import shin.spring.mvc.dao.MemberDAO;
 import shin.spring.mvc.vo.MemberVO;
 
+import javax.servlet.http.HttpSession;
+
 @Service("msrv")
 public class MemberServiceImpl implements MemberService{
 
@@ -66,6 +68,20 @@ public class MemberServiceImpl implements MemberService{
         }
         return isOk;
 
+    }
+
+    @Override
+    public Boolean checkLogin(MemberVO mvo, HttpSession sess) {
+        boolean isLogin = false;
+
+        // 로그인 성공시 회원정보를 세션에 저장
+        // 입력한 회원 아이디/비밀번호가 member테이블에 있는지 확인
+        // 있으면 1, 없으면 0 을 반환
+        if (mdao.selectLogin(mvo) > 0) {
+            sess.setAttribute("UID",mvo.getUserid());
+            isLogin = true;
+        }
+        return isLogin;
     }
 }
 

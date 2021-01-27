@@ -19,4 +19,8 @@
         select count(userid) cnt from Member where userid = #{uid}
     </select>
 
+    <select id="checkLogin" statementType="PREPARED" parameterType="shin.spring.mvc.vo.MemberVO" resultType="int">
+        select count(userid) cnt from Member where userid = #{userid} and passwd = #{passwd}
+    </select>
+
 </mapper>

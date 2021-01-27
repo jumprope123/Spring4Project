@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 public class joinController {
@@ -82,6 +84,13 @@ public class joinController {
             rds.addFlashAttribute("mvo",mvo);
         }else {
             rds.addFlashAttribute("checkCaptcha","자동가입방지 확인이 실패했어요");
+            //현재시간 구하기
+            SimpleDateFormat format2 = new SimpleDateFormat ( "yyyy년 MM월dd일 HH시mm분ss초");
+            Date time = new Date();
+            String time2 = format2.format(time);
+            //현재시간 보내기
+            mvo.setRegdate(time2);
+            //mvo 보내기
             rds.addFlashAttribute("mvo",mvo);
         }
 

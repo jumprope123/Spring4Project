@@ -30,4 +30,9 @@ public class MemberDAOImpl implements MemberDAO{
 
     }
 
+    @Override
+    public int selectLogin(MemberVO mvo) {
+        return sqlSession.selectOne("member.checkLogin",mvo);
+    }
+
 }

@@ -10,12 +10,12 @@
             <div class="modal-body">
                 <form id="loginfrm">
                     <div class="form-group form-inline row text-center">
-                        <label for="user" class="col-form-label col-sm-4">아이디</label>
-                        <input type="text" id="user" class="form-control col-sm-6">
+                        <label for="userid" class="col-form-label col-sm-4">아이디</label>
+                        <input type="text" id="userid" class="form-control col-sm-6" name="userid">
                     </div>
                     <div class="form-group form-inline row text-center">
-                        <label for="pwd" class="col-sm-4">비밀번호</label>
-                        <input type="password" id="pwd" class="form-control col-sm-6">
+                        <label for="passwd" class="col-sm-4">비밀번호</label>
+                        <input type="password" id="passwd" class="form-control col-sm-6" name="passwd">
                     </div>
                     <div class="form-group row">
                         <div class="col-4"></div>
@@ -28,7 +28,7 @@
                 </form>
             </div>
             <div class="modal-footer bg-light justify-content-center">
-                <button type="button" class="btn btn-danger">로그인</button>
+                <button type="button" class="btn btn-danger" id="loginbtn">로그인</button>
                 <button type="button" class="btn btn-warning ">아이디/비밀번호 찾기</button>
             </div>
         </div>
