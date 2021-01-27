@@ -62,13 +62,21 @@ $('#joinbtn').on('click',function () {
         alert('이메일주소를 입력해주세요');
     }else if ($('#hp2').val() == '' || $('#hp3').val() == ''){
         alert('전화번호를 입력해주세요');
+    }else if (grecaptcha.getResponse() == ""){ //grecaptcha는 헤드에있는 자바스크립트 내에 작성된 코드임
+        alert("자동가입 방지 확인 필요!");
     }else {
+        // recaptcha 코드 유효성 검사를 위한 변수값 설정
+        // alert(grecaptcha.getResponse());
+        // 구글 recaptcha 코드 확인
 
         // 분리된 데이터 합치기
         $('#jumin').val($('#jumin1').val() + '-' + $('#jumin2').val());
         $('#zipcode').val($('#zip1').val() + '-' + $('#zip2').val());
         $('#email').val($('#email1').val() + '@' + $('#email2').val());
         $('#phone').val($('#hp1').val() + '-' + $('#hp2').val() + '-' + $('#hp3').val());
+
+        // 클라이언트에서 생성한 코드를 서버에서도 확인하기 위한 목적
+        $('#g-recaptcha').val(grecaptcha.getResponse());
 
         $('#joinfrm').attr('action', '/join/joinme');
         $('#joinfrm').attr('method', 'post');
@@ -138,7 +146,12 @@ $('#sendbtn').on('click', function () {
     $('#zipmodal').modal('hide');
 })
 
-
+//우편번호 모달창 x버튼 클릭시 처리
+$('#modalx').on('click', function () {
+    $('#addrlist').find("option").remove();
+    $('#dong').val('');
+    $('#zipmodal').modal('hide');
+});
 
 // 이메일 처리
 //option:selected => select 요소들 중 선택한 객체를 알아냄
@@ -185,3 +198,4 @@ function checkuid(){
             alert(xhr,status, + "/" + error)
         }); // 비동기 요청 실패시
 }
+

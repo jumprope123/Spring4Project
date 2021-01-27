@@ -1,4 +1,9 @@
 <%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>
+
 <div id="main">
     <div class="margin30">
         <h3><img src="/img/glyphicons_043_group.png" style="position: relative; top: -5px">회원가입</h3>
@@ -35,7 +40,7 @@
                     </div><!--주민번호-->
                     <div class="form-group row">
                         <label for="newuid" class="col-form-label col-sm-2 text-right text-danger">아이디</label>
-                        <input type="text" class="form-control col-sm-4 border-danger" name="userid" id="newuid" required>
+                        <input type="text" class="form-control col-sm-4 border-danger" name="userid" id="newuid" required value="${mvo.userid}">
                         <span id="uidmsg" class="text-danger col-sm-6 ">&nbsp;&nbsp;6~16 자의 영문 소문자, 숫자와 특수기호(_)만 사용할 수 있습니다.</span>
                     </div>
                     <div class="form-group row">
@@ -50,9 +55,9 @@
                     </div><!--비밀번호 확인-->
                     <div class="form-group row">
                         <label for="zip1" class="col-form-label col-sm-2 text-right text-danger">우편번호</label>
-                        <input type="text" class="form-control col-sm-1 border-danger" id="zip1" name="zip1" readonly>
+                        <input type="text" class="form-control col-sm-1 border-danger" id="zip1" name="zip1" readonly  value="${fn:split(mvo.zipcode,'-')[0]}">
                         <label class="col-form-label">&nbsp;-&nbsp;</label>
-                        <input type="text" class="form-control col-sm-1 border-danger" id="zip2" name="zip2" readonly>
+                        <input type="text" class="form-control col-sm-1 border-danger" id="zip2" name="zip2" readonly  value="${fn:split(mvo.zipcode,'-')[1]}">
                         <span>&nbsp;&nbsp;</span>
                         <button type="button" class="btn btn-dark"
                             data-toggle="modal" data-target="#zipmodal">
@@ -60,13 +65,13 @@
                     </div><!--우편번호-->
                     <div class="form-group row">
                         <label for="addr1" class="col-form-label col-sm-2 text-right text-danger">주소</label>
-                        <input type="text" class="form-control col-sm-3 border-danger" id="addr1" name="addr1" readonly>
+                        <input type="text" class="form-control col-sm-3 border-danger" id="addr1" name="addr1" readonly value="${mvo.addr1}">
                         <span>&nbsp;</span>
                         <input type="text" class="form-control col-sm-3 border-danger" id="addr2" name="addr2" required>
                     </div><!--주소-->
                     <div class="form-group row">
                         <label for="email1" class="col-form-label col-2 text-right text-danger">전자우편 주소</label>
-                        <input type="email" class="form-control col-sm-3 border-danger igborder" id="email1" name="email1" required>
+                        <input type="email" class="form-control col-sm-3 border-danger igborder" id="email1" name="email1" required  value="${fn:split(mvo.email,'@')[0]}">
                         <div class="input-group-append">
                             <span class="input-group-text igborder">@</span>
                         </div>
@@ -91,13 +96,15 @@
                             <option>011</option>
                         </select>
                         <span>&nbsp;&mdash;&nbsp;</span>
-                        <input class="form-control col-sm-1 border-danger" id="hp2" name="hp2">
+                        <input class="form-control col-sm-1 border-danger" id="hp2" name="hp2" value="${fn:split(mvo.phone,'-')[1]}">
                         <span>&nbsp;&mdash;&nbsp;</span>
-                        <input class="form-control col-sm-1 border-danger" id="hp3" name="hp3">
+                        <input class="form-control col-sm-1 border-danger" id="hp3" name="hp3" value="${fn:split(mvo.phone,'-')[2]}">
                     </div><!--전화번호-->
                     <div class="form-group row">
                         <label class="col-form-label col-2 text-right text-danger">자동 가입방지</label>
-                        <img src="/img/google_recaptcha.gif" width="45%" height="45%" style="margin-left: -5px;">
+                        <div class="g-recaptcha" data-sitekey="6LfA1joaAAAAAOU9f2VaZdKu9Z4C_tWErqdpFnqf"></div>
+                        <input type="hidden" name="g-recaptcha" id="g-recaptcha">
+                        <span style="color: red">${checkCaptcha}</span>
                     </div><!--자동가입방지-->
                     <hr>
                 </div>
@@ -127,7 +134,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title">우편번호 찾기</h3>
-                <button type="button" data-dismiss="modal" class="close" aria-label="Close"><span aria-hidden="true"><i class="bi bi-x"></i></span></button>
+                <button type="button" class="close" aria-label="Close" id="modalx"><span aria-hidden="true"><i class="bi bi-x"></i></span></button>
             </div>
             <div class="modal-body">
                 <form id="zipfrm">
