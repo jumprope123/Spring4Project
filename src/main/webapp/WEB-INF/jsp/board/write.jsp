@@ -1,4 +1,11 @@
 <%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%--로그인 하지 않았으면 list페이지로 강제 전환--%>
+<c:if test="${empty UID}">
+    <c:redirect url="/board/list?cp=1"/>
+</c:if>
+
 <div id="main">
     <div class="margin30">
         <h3><i class="bi bi-chat-dots-fill bidragup"></i>&nbsp;게시판</h3>
@@ -10,7 +17,7 @@
                 <h4><i class="bi bi-plus-circle-fill bidragup"></i>새글쓰기</h4>
             </div>
             <div class="col-6 text-right">
-                <a href="list.html"><button type="button" id="listbdbtn" class="btn btn-light">
+                <a href="/board/list"><button type="button" id="listbdbtn" class="btn btn-light">
                     <i class="bi bi-card-list bidragup"></i>&nbsp;목록으로
                 </button></a>
             </div>
@@ -23,7 +30,7 @@
             </div>
             <div class="form-group row">
                 <label for="uid" class="col-form-label col-2 text-right">작성자</label>
-                <input type="text" id="uid" name="userid" class="form-control col-9" readonly>
+                <input type="text" id="uid" name="userid" class="form-control col-9" readonly value="${UID}">
             </div>
             <div class="form-group row">
                 <label for="contents" class="col-form-label col-2 text-right">본문내용</label>
@@ -31,7 +38,7 @@
             </div>
             <div class="row">
                 <label class="col-2 text-right">자동입력방지</label>
-                <img src="/resources/img/google_recaptcha.gif" width="40%" height="40%" style="margin-left: -5px">
+                <img src="/img/google_recaptcha.gif" width="40%" height="40%" style="margin-left: -5px">
             </div>
         </div> <!--새글쓰기 폼-->
 

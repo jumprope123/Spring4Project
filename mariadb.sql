@@ -19,3 +19,26 @@ insert into Member (name, jumin, userid, passwd, zipcode, addr1, addr2, email, p
 values(?,?,?,?,?,?,?,?,?);
 
 select userid from Member where userid = 'shon' ;
+
+-- board
+create table Board (
+    bno int primary key auto_increment,
+    title varchar(100) not null ,
+    userid varchar(16) not null ,
+    regdate timestamp default current_timestamp,
+    views int default 0,
+    thumbs int default 0,
+    contents text not null
+);
+
+-- crud
+
+insert into Board (title, userid, contents) values ('타이틀임','작성자임','내용임');
+
+select bno, title, userid, regdate, thumbs, views from Board order by bno desc;
+
+select * from Board where bno = 1;
+
+update Board set title = '변경타이틀', contents = '변경내용', regdate = current_timestamp where bno = 1;
+
+delete from Board where bno = 1;

@@ -1,4 +1,42 @@
 <%@ page pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
+<%--
+    게시판 네비게이션
+    현재 페이지에 따라 보여줄 페이지 블록을 결정
+    ex) 총 페이지수pages가 27일때
+    cp = 1 : 1 2 3 4 5 6 7 8 9 10
+    cp = 3 : 1 2 3 4 5 6 7 8 9 10
+    cp = 11 : 11 12 13 14 15 16 17 18 19 20
+    cp = 17 : 11 12 13 14 15 16 17 18 19 20
+    cp = 23 : 21 22 23 24 25 26 27
+    startPage = floor((cp - 1) / 10) * 10 + 1
+    endPage = startPage + 9
+
+    sp 스타트페이지
+    ep 엔드페이지
+    tp 토탈페이지
+    cp 지금페이지
+    pp perpage 한페이지에 보여주는 페이지
+
+--%>
+
+<fmt:parseNumber var="cp" value="${param.cp}"/>
+<%--<c:if test="${empty cp}"> <c:set var="cp" value="1"/> </c:if>--%>
+<fmt:parseNumber var="pp" value="10"/>
+<fmt:parseNumber var="bdcnt" value="${bdcnt}"/>
+
+<fmt:parseNumber var="sp" integerOnly="true" value="${((cp - 1) / pp)}"/>
+<fmt:parseNumber var="sp" value="${sp * 10 + 1 }"/>
+<fmt:parseNumber var="ep" value="${sp + 9}"/>
+
+<fmt:parseNumber var="tp" value="${bdcnt/pp}" integerOnly="true"/>
+<c:if test="${(bdcnt % pp) > 0}">
+    <fmt:parseNumber var="tp" value="${tp + 1}"/>
+</c:if>
+
 <div id="main">
     <div class="margin30">
         <h3><i class="bi bi-chat-dots-fill bidragup"></i>&nbsp;게시판</h3>
@@ -7,7 +45,9 @@
 
     <div class="row margin1050">
         <div class="col-12 text-right">
-            <a href="/board/write"><button type="button" id="newbd" class="btn btn-info"><i class="bi bi-plus-circle bidragup"></i>&nbsp;새글쓰기</button></a>
+            <c:if test="${not empty UID}">
+                <button type="button" id="newbd" class="btn btn-info"><i class="bi bi-plus-circle bidragup"></i>&nbsp;새글쓰기</button>
+            </c:if>
         </div>
     </div>
     <div class="row margin1050">
@@ -32,36 +72,11 @@
                     <th>999</th>
                     <th>999</th>
                 </tr>
+                <c:forEach var="b" items="${bds}">
                 <tr>
-                    <td>1</td><td><a href="/board/view?bno=1" class="colblack">김민수찌릿찌릿전기숔!&nbsp;<span class="badge badge-success">New</span></a></td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
+                    <td>${b.bno}</td><td><a href="/board/view?bno=${b.bno}&cp=${cp}" class="colblack">${b.title}</a></td><td>${b.userid}</td><td>${fn:substring(b.regdate,0,10)}</td><td>${b.thumbs}</td><td>${b.views}</td>
                 </tr>
-                <tr>
-                    <td>2</td><td>전기는 역시 한국전력!</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
-                <tr>
-                    <td>3</td><td>당산동 워렌버핏 굳길</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
-                <tr>
-                    <td>4</td><td>현현이는 현현해!</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
-                <tr>
-                    <td>5</td><td>빡빡이라고 외치면서 10바퀴 돌아!</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
-                <tr>
-                    <td>6</td><td>땡빈이 땡떙!</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
-                <tr>
-                    <td>7</td><td>민수는 못말려!</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
-                <tr>
-                    <td>8</td><td>삼성다음은 현대차를 사자!</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
-                <tr>
-                    <td>9</td><td>사고사고 또 사자 가즈아!</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
-                <tr>
-                    <td>10</td><td>네이버 카카오 동반떡상 예정!</td><td>minsuKim</td><td>2021.01.13</td><td>0</td><td>0</td>
-                </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
@@ -69,18 +84,25 @@
     <div class="row">
         <div class="col-12">
             <ul class="pagination justify-content-center">
-                <li class="page-item disabled"><a href="#" class="page-link">이전</a></li>
-                <li class="page-item active"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item"><a href="#" class="page-link">3</a></li>
-                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                <li class="page-item"><a href="#" class="page-link">6</a></li>
-                <li class="page-item"><a href="#" class="page-link">7</a></li>
-                <li class="page-item"><a href="#" class="page-link">8</a></li>
-                <li class="page-item"><a href="#" class="page-link">9</a></li>
-                <li class="page-item"><a href="#" class="page-link">10</a></li>
-                <li class="page-item"><a href="#" class="page-link">다음</a></li>
+                <%--'이전'이 표시되어야 할 때는 cp > 10 --%>
+                    <li class="page-item <c:if test="${sp lt 11}">disabled</c:if>">
+                        <a href="/board/list?cp=${sp - 10}" class="page-link">이전</a></li>
+
+                <c:forEach var="i" begin="${sp}" end="${ep}" step="1">
+                    <c:if test="${i le tp}">
+                        <c:if test="${i ne cp}">
+                         <li class="page-item"><a href="/board/list?cp=${i}" class="page-link font-weight-bold">${i}</a></li>
+                        </c:if>
+
+                        <c:if test="${i eq cp}">
+                            <li class="page-item active"><a href="/board/list?cp=${i}" class="page-link font-weight-bold">${i}</a></li>
+                        </c:if>
+                    </c:if>
+                </c:forEach>
+
+                <%--'다음'이 표시되어야 할 때는 ?--%>
+                    <li class="page-item <c:if test="${ep gt tp}">disabled</c:if>">
+                    <a href="/board/list?cp=${sp+10}" class="page-link">다음</a></li>
             </ul>
         </div>
     </div><!--페이지네이션-->
