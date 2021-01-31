@@ -11,7 +11,7 @@ $('#listbdbtn').on('click', function () {
 })
 
 $('#thumbbtn').on('click', function () {
-    location.href = "board/"
+    location.href = "board/ "
 })
 
 $('#upbdbtn').on('click', function () {

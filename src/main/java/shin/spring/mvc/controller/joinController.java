@@ -75,6 +75,7 @@ public class joinController {
         // 클라이언트에서 생성한 captcha 코드를 가져옴
         String gCaptcha = req.getParameter("g-recaptcha");
 
+
         // captcha 코드의 유효성을 확인함
         // 결과가 true  => 테이블에 회원정보 저장, /join/joinok 이동
         // 결과가 false => /join/joinme 이동
