@@ -42,3 +42,36 @@ select * from Board where bno = 1;
 update Board set title = '변경타이틀', contents = '변경내용', regdate = current_timestamp where bno = 1;
 
 delete from Board where bno = 1;
+
+
+-- reply
+create table Reply (
+    rno int primary key auto_increment,
+    cno int not null,
+    bno int not null ,
+    reply text not null ,
+    userid varchar(16) not null ,
+    regdate timestamp default current_timestamp
+);
+
+alter table Reply add constraint fk_mr foreign key (userid) references Member(userid); -- 비식별키를 이용한 외래키
+
+alter table Reply add constraint fk_br foreign key (bno) references Board(bno); -- 식별키를 이용한 외래키
+
+-- insert
+insert into Reply (rno, cno, bno, reply, userid) values (1,1,552,'오늘은 날씨가...','user1');
+insert into Reply (rno, cno, bno, reply, userid) values (4,1,552,'비올꺼 같아요','user10');
+insert into Reply (rno, cno, bno, reply, userid) values (6,1,552,'블라블라','user9');
+insert into Reply (rno, cno, bno, reply, userid) values (2,2,552,'점심메뉴는...','user2');
+insert into Reply (rno, cno, bno, reply, userid) values (3,3,552,'월요병이 도졌나...','user3');
+insert into Reply (rno, cno, bno, reply, userid) values (5,5,552,'블라블라','user25');
+insert into Reply (rno, cno, bno, reply, userid) values (7,7,552,'블라블라','user23');
+
+insert into Reply(cno, bno, userid, reply) values ();
+
+# cno는 comment number , rno는 reply number, bno는 board number
+-- select
+select * from Reply where bno = 552 order by cno;
+
+-- 데이터 추가시 반영될 auto_increment의 값 조회
+select auto_increment from information_schema.TABLES where table_name = 'Reply';

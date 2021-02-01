@@ -69,61 +69,35 @@
     <div class="row margin1050 mt-5">
         <h3><i class="bi bi-chat-square-dots-fill"></i>&nbsp;나도 한마디</h3>
         <table class="table tblines tbwide">
-            <tr>
-                <td><h4>Mr.shin</h4></td>
-                <td>
-                    <div class="cmtbg1">2021-01-30 15:15:15</div>
-                    <p>감전은 신체가 회로의 한 부분이 되었을 때, 전류가 몸을 타고 흘러 신체에 상해를 입히는 현상이다.<br> 감전으로 신체에 흐르는 전류의 크기는 옴의 법칙에 따라, 회로와 연결된 신체의 양 말단 전위차(전기위치에너지 차이)와 신체가 가진 저항에 따라 결정된다.<br> 입을 수 있는 상해의 종류로는 화상, 근육 경련, <span class="text-danger font-weight-bold h5 font-italic">감전사</span> 등이 있다. <br>감전으로 인한 피해를 예방하기 위해서는, 건조한 고무나 가죽으로 된 장갑과 신발을 착용하고 전기 작업을 해야 한다.<br>
-                        그림 1은 고압전선에 앉아도 감전되지 않는 새들이다. <br>이 그림은 감전의 요소 중 전위차, 즉 전기위치에너지 차이에 대한 예시이다.</p><!--댓글-->
-                    <ul class="list-unstyled">
-                        <li>
-                            <div class="cmtbg2"><span class="h4">minsuKim</span>
-                                <span class="pushright">2021-01-30 16:16:16</span></div>
-                            <p>조심하는게 좋을것이다 김민수.</p>
-                        </li>
-                    </ul><!--댓글의 댓글-->
-                </td>
-            </tr>
-            <tr>
-                <td><h4>Mr.shin</h4></td>
-                <td>
-                    <div class="cmtbg1">2021-01-30 15:15:15</div>
-                    <p>감전은 신체가 회로의 한 부분이 되었을 때, 전류가 몸을 타고 흘러 신체에 상해를 입히는 현상이다.<br> 감전으로 신체에 흐르는 전류의 크기는 옴의 법칙에 따라, 회로와 연결된 신체의 양 말단 전위차(전기위치에너지 차이)와 신체가 가진 저항에 따라 결정된다.<br> 입을 수 있는 상해의 종류로는 화상, 근육 경련, <span class="text-danger font-weight-bold h5 font-italic">감전사</span> 등이 있다. <br>감전으로 인한 피해를 예방하기 위해서는, 건조한 고무나 가죽으로 된 장갑과 신발을 착용하고 전기 작업을 해야 한다.<br>
-                        그림 1은 고압전선에 앉아도 감전되지 않는 새들이다. <br>이 그림은 감전의 요소 중 전위차, 즉 전기위치에너지 차이에 대한 예시이다.</p><!--댓글-->
-                </td>
-            </tr>
-            <tr>
-                <td><h4>Mr.shin</h4></td>
-                <td>
-                    <div class="cmtbg1">2021-01-30 15:15:15</div>
-                    <p>감전은 신체가 회로의 한 부분이 되었을 때, 전류가 몸을 타고 흘러 신체에 상해를 입히는 현상이다.<br> 감전으로 신체에 흐르는 전류의 크기는 옴의 법칙에 따라, 회로와 연결된 신체의 양 말단 전위차(전기위치에너지 차이)와 신체가 가진 저항에 따라 결정된다.<br> 입을 수 있는 상해의 종류로는 화상, 근육 경련, <span class="text-danger font-weight-bold h5 font-italic">감전사</span> 등이 있다. <br>감전으로 인한 피해를 예방하기 위해서는, 건조한 고무나 가죽으로 된 장갑과 신발을 착용하고 전기 작업을 해야 한다.<br>
-                        그림 1은 고압전선에 앉아도 감전되지 않는 새들이다. <br>이 그림은 감전의 요소 중 전위차, 즉 전기위치에너지 차이에 대한 예시이다.</p><!--댓글-->
-                </td>
-            </tr>
-            <tr>
-                <td><h4>Mr.shin</h4></td>
-                <td>
-                    <div class="cmtbg1">2021-01-30 15:15:15</div>
-                    <p>감전은 신체가 회로의 한 부분이 되었을 때, 전류가 몸을 타고 흘러 신체에 상해를 입히는 현상이다.<br> 감전으로 신체에 흐르는 전류의 크기는 옴의 법칙에 따라, 회로와 연결된 신체의 양 말단 전위차(전기위치에너지 차이)와 신체가 가진 저항에 따라 결정된다.<br> 입을 수 있는 상해의 종류로는 화상, 근육 경련, <span class="text-danger font-weight-bold h5 font-italic">감전사</span> 등이 있다. <br>감전으로 인한 피해를 예방하기 위해서는, 건조한 고무나 가죽으로 된 장갑과 신발을 착용하고 전기 작업을 해야 한다.<br>
-                        그림 1은 고압전선에 앉아도 감전되지 않는 새들이다. <br>이 그림은 감전의 요소 중 전위차, 즉 전기위치에너지 차이에 대한 예시이다.</p><!--댓글-->
-                </td>
-            </tr>
-            <tr>
-                <td><h4>Mr.shin</h4></td>
-                <td>
-                    <div class="cmtbg1">2021-01-30 15:15:15</div>
-                    <p>감전은 신체가 회로의 한 부분이 되었을 때, 전류가 몸을 타고 흘러 신체에 상해를 입히는 현상이다.<br> 감전으로 신체에 흐르는 전류의 크기는 옴의 법칙에 따라, 회로와 연결된 신체의 양 말단 전위차(전기위치에너지 차이)와 신체가 가진 저항에 따라 결정된다.<br> 입을 수 있는 상해의 종류로는 화상, 근육 경련, <span class="text-danger font-weight-bold h5 font-italic">감전사</span> 등이 있다. <br>감전으로 인한 피해를 예방하기 위해서는, 건조한 고무나 가죽으로 된 장갑과 신발을 착용하고 전기 작업을 해야 한다.<br>
-                        그림 1은 고압전선에 앉아도 감전되지 않는 새들이다. <br>이 그림은 감전의 요소 중 전위차, 즉 전기위치에너지 차이에 대한 예시이다.</p><!--댓글-->
-                </td>
-            </tr>
-            <tr>
-                <td><h4>Mr.shin</h4></td>
-                <td>
-                    <div class="cmtbg1">2021-01-30 15:15:15</div>
-                    <p>감전은 신체가 회로의 한 부분이 되었을 때, 전류가 몸을 타고 흘러 신체에 상해를 입히는 현상이다.<br> 감전으로 신체에 흐르는 전류의 크기는 옴의 법칙에 따라, 회로와 연결된 신체의 양 말단 전위차(전기위치에너지 차이)와 신체가 가진 저항에 따라 결정된다.<br> 입을 수 있는 상해의 종류로는 화상, 근육 경련, <span class="text-danger font-weight-bold h5 font-italic">감전사</span> 등이 있다. <br>감전으로 인한 피해를 예방하기 위해서는, 건조한 고무나 가죽으로 된 장갑과 신발을 착용하고 전기 작업을 해야 한다.<br>
-                        그림 1은 고압전선에 앉아도 감전되지 않는 새들이다. <br>이 그림은 감전의 요소 중 전위차, 즉 전기위치에너지 차이에 대한 예시이다.</p><!--댓글-->
-                </td>
-            </tr>
+
+            <c:forEach var="r" items="${rp}">
+                <c:if test="${r.rno eq r.cno}">
+                    <tr>
+                        <td><h4>${r.userid}</h4></td>
+                        <td>
+                            <div class="cmtbg1">${r.regdate}</div>
+                            <p>${r.reply}</p><!--댓글-->
+                        </td>
+                    </tr>
+                </c:if>
+                <%--여기까지는 댓글--%>
+                <c:if test="${r.rno ne r.cno}">
+                    <tr>
+                        <td></td>
+                        <td>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="cmtbg2"><span class="h4">${r.userid}</span>
+                                        <span class="pushright">${r.regdate}</span></div>
+                                    <p>${r.reply}</p>
+                                </li>
+                            </ul><!--댓글의 댓글-->
+                        </td>
+                    </tr>
+                </c:if>
+                <%--여기까지는 대댓글--%>
+            </c:forEach>
+
         </table>
     </div><!--댓글목록-->
 
@@ -131,9 +105,11 @@
         <form id="replyfrm" class="card card-body bg-light">
             <div class="form-group row justify-content-center">
                 <label class="pushtop50 text-primary font-weight-bold">로그인하세요</label>&nbsp;
-                <textarea id="comment" rows="5" class="form-control col-7" style="resize: none"></textarea>&nbsp;&nbsp;
-                <span><button id="bdcmtbtn" class="btn-dark pushtop50"><i class="bi bi-chat-text-fill bidragup"></i>댓글쓰기</button></span>
+                <textarea id="reply" name="reply" rows="5" class="form-control col-7" style="resize: none"></textarea>&nbsp;&nbsp;
+                <span><button type="button" id="bdcmtbtn" class="btn-dark pushtop50"><i class="bi bi-chat-text-fill bidragup"></i>댓글쓰기</button></span>
             </div>
+            <input type="hidden" name="bno" value="${param.bno}">
+            <input type="hidden" name="userid" id="uid" value="${UID}">
         </form>
     </div><!--댓글폼-->
 </div>

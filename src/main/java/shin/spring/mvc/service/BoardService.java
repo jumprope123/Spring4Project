@@ -13,4 +13,8 @@ public interface BoardService {
     public int countBoard();
 
     Boolean viewCountBoard(String bno);
+
+    List<BoardVO> readBoard(String cp, String findtype, String findkey);
+
+    int countBoard(String findtype, String findkey);
 }

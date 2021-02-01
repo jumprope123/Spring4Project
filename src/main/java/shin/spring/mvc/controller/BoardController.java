@@ -9,6 +9,7 @@ import shin.spring.mvc.service.BoardReplyService;
 import shin.spring.mvc.service.BoardService;
 import shin.spring.mvc.util.GoogleCaptchaUtil;
 import shin.spring.mvc.vo.BoardVO;
+import shin.spring.mvc.vo.ReplyVO;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,10 +22,10 @@ public class BoardController {
     private BoardReplyService brsrv;
 
     @Autowired
-    public BoardController(BoardService bsrv, GoogleCaptchaUtil gcutil) {
+    public BoardController(BoardService bsrv, GoogleCaptchaUtil gcutil, BoardReplyService brsrv) {
         this.bsrv = bsrv;
         this.gcutil = gcutil;
-//        this.brsrv = brsrv;
+        this.brsrv = brsrv;
     }
 
     //게시판 목록처리 1: 페이징
@@ -58,8 +59,10 @@ public class BoardController {
     public ModelAndView view(String bno, ModelAndView mv){
         mv.setViewName("board/view.tiles");
 
-        bsrv.viewCountBoard(bno); // 조회수 증가
+
         mv.addObject("bd", bsrv.readOneBoard(bno));
+        mv.addObject("rp", brsrv.readReply(bno));
+        bsrv.viewCountBoard(bno); // 조회수 증가
         return mv;
     }
 
@@ -121,6 +124,25 @@ public class BoardController {
         bsrv.removeBoard(bno);
 
         return "redirect:/board/list?cp=" + cp;
+    }
+
+    @GetMapping("/board/find") //검색기능
+    // 게시물 검색기능을 위한 url 호출방법 : /board/find?findtype=title&findkey=기생충&cp=2
+    public ModelAndView find(ModelAndView mv, String findtype, String findkey, String cp){
+        mv.setViewName("board/list.tiles");
+
+        mv.addObject("bds", bsrv.readBoard(cp, findtype, findkey));
+        mv.addObject("bdcnt", bsrv.countBoard(findtype, findkey));
+        return mv;
+    }
+
+    @PostMapping("board/replyok") //댓글쓰기
+    public String replyok(ReplyVO rvo){
+        String returnPage = "redirect:/board/view?bno=" + rvo.getBno();
+
+        brsrv.newReply(rvo);
+
+        return returnPage;
     }
 
 }
