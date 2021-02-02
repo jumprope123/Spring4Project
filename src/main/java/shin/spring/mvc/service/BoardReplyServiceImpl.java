@@ -27,4 +27,14 @@ public class BoardReplyServiceImpl implements BoardReplyService{
         }
         return isOK;
     }
+
+    @Override // 대댓글 쓰기
+    public Boolean newReReply(ReplyVO rvo) {
+        Boolean isOK = false;
+        int cnt = brdao.insertReReply(rvo);
+        if (cnt > 0) {
+            isOK = true;
+        }
+        return isOK;
+    }
 }

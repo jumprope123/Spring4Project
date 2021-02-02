@@ -8,4 +8,6 @@ public interface BoardReplyService {
     List<ReplyVO> readReply(String bno);
 
     Boolean newReply(ReplyVO rvo);
+
+    Boolean newReReply(ReplyVO rvo);
 }

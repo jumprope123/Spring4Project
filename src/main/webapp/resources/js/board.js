@@ -48,6 +48,20 @@ $('#bdcmtbtn').on('click',function () {
     }
 })
 
+function addReply(cno) {
+    $('#replyModal').modal('show');
+    $('#cno').val(cno); // 대댓글 작성시 부모댓글의 번호를 cno에 저장
+} //대댓글 대화상자 띄우기
+
+$('#rpbtn').on('click',function () {
+    if ($('#rereply').val() == '') alert('내용을 작성하세요');
+    else {
+        $('#rpfrm').attr('method','post');
+        $('#rpfrm').attr('action','/board/replyok');
+        $('#rpfrm').submit();
+    }
+}) // 대댓글 작성하기
+
 
 
 // write
