@@ -83,9 +83,12 @@ public class PdsController {
     // view를 이용해서 데이터를 출력하지 않고 Http응답으로 직접 데이터를 브라우저로 출력
     @ResponseBody
     @GetMapping("/pds/down")
-    public void pdown(String pno, HttpServletRequest req, HttpServletResponse res) {
+    public void pdown(String pno, String order, HttpServletResponse res) {
         try {
-            fud.procDownload(req, res);
+            PdsVO p = psrv.readOneFname(pno, order);
+            fud.procDownloadV2(p.getFname1(), p.getUuid(), res);
+            psrv.downCountPds(pno, order); // 첨부파일 다운수 처리
+
         } catch (IOException e) {
             e.printStackTrace();
         }

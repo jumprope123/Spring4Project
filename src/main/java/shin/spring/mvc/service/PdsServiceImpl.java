@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import shin.spring.mvc.dao.PdsDAO;
 import shin.spring.mvc.vo.PdsVO;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,20 @@ public class PdsServiceImpl implements PdsService{
         return pdao.selectOnePds(pno);
     }
 
+    @Override
+    public PdsVO readOneFname(String pno, String order) {
+        return pdao.selectOneFname(pno,order);
+    }
+
+    @Override
+    public Boolean downCountPds(String pno, String order) {
+        Map<String, String> param = new HashMap<>();
+        param.put("pno", pno);
+        param.put("order","fdown" + order);
+        int cnt = pdao.updateDownCount(param);
+        return true;
+    }
+
     // 폼 데이터를 PdsVO에 나눠담음
     // title : 제목
     // userid : 작성자
@@ -47,6 +62,7 @@ public class PdsServiceImpl implements PdsService{
         for(String key: frmdata.keySet()) { // Map으로부터 키를 하나씩 꺼냄
             String val = frmdata.get(key); //  키에 해당하는 값을 알아냄
             switch (key) {
+                case "uuid" : p.setUuid(val); break;
                 case "title" : p.setTitle(val); break;
                 case "userid" : p.setUserid(val); break;
                 case "contents" : p.setContents(val); break;

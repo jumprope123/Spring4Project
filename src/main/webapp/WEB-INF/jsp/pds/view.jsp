@@ -12,6 +12,23 @@
 <%--application : 어플리케이션(프로젝트) 내에서 공유할 수 있는 객체--%>
 <c:set var="newChar" value="
 " scope="application"/> <%-- value값에 엔터를 넣음 --%>
+
+<c:set var="atticon1" value="${pd.ftype1}"/>
+<c:if test="${pd.ftype1 ne 'zip' and pd.ftype1 ne 'jpg' and pd.ftype1 ne 'txt'}">
+    <c:set var="atticon1" value="file"/>
+</c:if>
+
+
+<c:set var="atticon2" value="${pd.ftype2}"/>
+<c:if test="${pd.ftype2 ne 'zip' and pd.ftype2 ne 'jpg' and pd.ftype2 ne 'txt'}">
+    <c:set var="atticon2" value="file"/>
+</c:if>
+
+<c:set var="atticon3" value="${pd.ftype3}"/>
+<c:if test="${pd.ftype3 ne 'zip' and pd.ftype3 ne 'jpg' and pd.ftype3 ne 'txt'}">
+    <c:set var="atticon3" value="file"/>
+</c:if>
+
 <div id="main">
     <div class="margin30">
         <h3><i class="bi bi-chat-dots-fill" style="position: relative; top: -5px"></i>&nbsp;뷰</h3>
@@ -38,12 +55,12 @@
             <tr><th colspan="2" class="tblines2 tbbg1 text-center bg-light"><h2>${pd.title}</h2></th><tr> <!--제목-->
             <tr class="tbbg2 font-weight-bold"><td>${pd.userid}</td><td class="text-right">${pd.regdate} / ${pd.thumbs} / ${pd.views}</td><tr> <!--작성자,작성일,조회수-->
             <tr><th colspan="2" class="tbbg3 tblines2">${fn:replace(pd.contents,newChar,"<br>")}</th><tr> <!--본문-->
-            <tr><td class="text-left">첨부1</td><td><a href="/pds/down?pno=${pd.pno}&f=${pd.fname1}">${pd.fname1}</a>  (${pd.fsize1}KB, ${pd.fdown1}회 다운로드함)</td></tr>
+            <tr><td class="text-left">첨부1</td><td><img src="/img/${atticon1}.png"><a href="/pds/down?pno=${pd.pno}&order=1">${pd.fname1}</a>  (${pd.fsize1}KB, ${pd.fdown1}회 다운로드함)</td></tr>
             <c:if test="${not empty pd.fname2}">
-                <tr><td class="text-left">첨부2</td><td>${pd.fname2} (${pd.fsize2}KB, ${pd.fdown2}회 다운로드함)</td></tr>
+                <tr><td class="text-left">첨부2</td><td><img src="/img/${atticon2}.png"><a href="/pds/down?pno=${pd.pno}&order=2">${pd.fname2}</a> (${pd.fsize2}KB, ${pd.fdown2}회 다운로드함)</td></tr>
             </c:if>
             <c:if test="${not empty pd.fname2}">
-                <tr><td class="text-left">첨부3</td><td>${pd.fname3} (${pd.fsize3}KB, ${pd.fdown3}회 다운로드함)</td></tr>
+                <tr><td class="text-left">첨부3</td><td><img src="/img/${atticon3}.png"><a href="/pds/down?pno=${pd.pno}&order=3">${pd.fname3}</a> (${pd.fsize3}KB, ${pd.fdown3}회 다운로드함)</td></tr>
             </c:if>
         </table>
     </div><!--본문글-->

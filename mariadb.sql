@@ -76,7 +76,7 @@ select * from Reply where bno = 552 order by cno;
 -- 데이터 추가시 반영될 auto_increment의 값 조회
 select auto_increment from information_schema.TABLES where table_name = 'Reply';
 
-
+-- pds v1
 create table Pds(
     pno int primary key auto_increment,
     title varchar(100) not null ,
@@ -108,3 +108,31 @@ values ();
 select pno, title, userid, regdate, thumbs, views from Pds order by pno desc;
 
 select * from Pds where pno = ?;
+
+-- pds v2
+create table Pds(
+    pno int primary key auto_increment,
+    title varchar(100) not null ,
+    userid varchar(16) not null ,
+    regdate timestamp default current_timestamp,
+    views int default 0,
+    thumbs int default 0,
+    contents text not null,
+    fname1 varchar(50),
+    fname2 varchar(50),
+    fname3 varchar(50),
+    fsize1 varchar(5),
+    fsize2 varchar(5),
+    fsize3 varchar(5),
+    ftype1 varchar(5),
+    ftype2 varchar(5),
+    ftype3 varchar(5),
+    fdown1 int default 0,
+    fdown2 int default 0,
+    fdown3 int default 0,
+    uuid varchar(20)
+);
+
+select fname1 fname1, uuid from Pds where pno = 2;
+select fname2 fname1, uuid from Pds where pno = 2;
+select fname3 fname1, uuid from Pds where pno = 2;
