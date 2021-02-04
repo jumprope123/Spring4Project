@@ -15,7 +15,7 @@ public class ImageUploadUtil {
 
     // 이미지 업로드 경로 설정
     private String IMG_UPLOAD_PATH =
-            "C:/Java/nginx-1.18.0/html/cdn/";
+            "C:/Java/nginx-1.19.6/html/cdn/";
 
     // 갤러리에 이미지 첨부시 파일 존재 여부 확인
     public boolean checkGalleryFiles(MultipartFile[] img) {
@@ -85,12 +85,15 @@ public class ImageUploadUtil {
         String nfname = makeUUID() + "_" + ofname;
 
         try {
+            // 업로드한 이미지는 웹 서버의 임시저장소에 저장됨
+            // 이것을 원하는 위치에 다시 옮기기 위해 transferTo 메서드를 사용
             mf.transferTo(
                     new File(IMG_UPLOAD_PATH + nfname));
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        return nfname;
+        // 업로드한 파일명과 파일 크기를 리턴함
+        return nfname + "/" + (mf.getSize()/1024);
     }
 }

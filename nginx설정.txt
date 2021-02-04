@@ -1,0 +1,36 @@
+nginx 서버 설정하기
+
+오픈소스 Http 서버 (웹서버)
+
+웹서버 : 클라이언트의 요청을 받아 서비스하는 특수한 프로그램
+클라이언트 요청 (html, css, js, img 등의 웹 자원 을 요구하는 행위)
+
+하지만, 웹서버가 응답할 수 없는 클라이언트의 요청을 처리하려면
+WAS 서버가 필요함
+
+웹서버가 응답할 수 없는 클라이언트의 요청
+=> 디비에서 정보를 가져옴, 서버의 시간요청, 비지니스 로직 처리
+
+대표적인 웹서버 : apache Http 서버, nginx 서버 (추천!)
+대표적인 WAS서버 : tomcat , jetty (java) , IIS (C#), django (python)
+
+웹 서버 전용 port : 80 (유명한 포트번호라서 생략이 가능)
+was 서버 전용 port : tomcat 8080
+
+nginx.org
+=> 	nginx/Windows-1.19.6 2021-02-04일 기준
+=>  c:/Java에 압축해제해둠
+
+nginx시작 : exe파일 더블클릭
+브라우저 실행 후 주소창에 localhost 또는 127.0.0.1 입력
+
+테스트용 이미지 저장
+=> C:\Java\nginx-1.19.6\html\cdn
+
+업로드 해둔 그림파일 확인
+=> 주소창에 localhost/cdn/그림파일명 입력
+
+nginx 종료
+1. 작업관리자에서 nginx.exe(32비트) 프로세스 강제종료
+2. 명령프롬프트에서 cd \Java\nginx-1.19.6
+nginx -s stop 명령 입력

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="gallery">
+    <insert id="insertGallery" statementType="PREPARED" parameterType="shin.spring.mvc.vo.GalleryVO">
+        insert into Gallery (title, userid, contents, fnames, fsizes, uuid) values (#{title}, #{userid}, #{contents}, #{fnames}, #{fsizes}, #{uuid});
+    </insert>
+
+
+    <select id="selectList" statementType="PREPARED" resultType="shin.spring.mvc.vo.GalleryVO" parameterType="int">
+        select gno, title, userid, regdate, views, thumbs from Gallery order by gno desc limit #{startnum}, 10;
+    </select>
+
+    <select id="countGallery" statementType="PREPARED" resultType="int">
+        select count(gno) cnt from Gallery;
+    </select>
+
+    <select id="selectOne" statementType="PREPARED" resultType="shin.spring.mvc.vo.GalleryVO" parameterType="String">
+        select * from Gallery where gno = #{gno};
+    </select>
+
+</mapper>
