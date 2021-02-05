@@ -10,7 +10,7 @@
 
 
     <select id="selectList" statementType="PREPARED" resultType="shin.spring.mvc.vo.GalleryVO" parameterType="int">
-        select gno, title, userid, regdate, views, thumbs from Gallery order by gno desc limit #{startnum}, 10;
+        select gno, title, userid, regdate, views, thumbs, fnames from Gallery order by gno desc limit #{startnum}, 24;
     </select>
 
     <select id="countGallery" statementType="PREPARED" resultType="int">
@@ -21,4 +21,7 @@
         select * from Gallery where gno = #{gno};
     </select>
 
+    <select id="lastGalleryID" statementType="PREPARED" resultType="int">
+        select AUTO_INCREMENT-1 gno from information_schema.TABLES where TABLE_NAME = 'Gallery';
+    </select>
 </mapper>

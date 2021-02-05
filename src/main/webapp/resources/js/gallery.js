@@ -1,3 +1,4 @@
+// write
 $('#newgalbtn').on('click',function () {
     if ($('#title').val() == "") alert('제목을 쓰세요');
     else if ($('#contents').val() == "") alert('내용을 작성하세요');
@@ -9,3 +10,8 @@ $('#newgalbtn').on('click',function () {
         $('#newgalfrm').submit();
     }
 });
+
+// list
+function showimg(gno) {
+    location.href = '/gallery/view?gno=' + gno;
+}

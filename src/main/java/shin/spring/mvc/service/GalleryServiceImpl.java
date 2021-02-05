@@ -63,8 +63,29 @@ public class GalleryServiceImpl implements GalleryService{
 
         }
 
-        int cnt = gdao.insertGallery(gvo);
+        // 업로드한 이미지 정보를 테이블에 저장
+        int id = gdao.insertGallery(gvo);
+
+        // 업로드한 이미지들 중 첫번째 이미지를 썸네일 이미지로 만듦
+        imgutil.imageCropResize(gvo.getFnames().split("[/]")[0], id+"");
+
 
         return true;
+    }
+
+    @Override
+    public List<GalleryVO> readGallery(String cp) {
+        int snum = (Integer.parseInt(cp) - 1) * 24;
+        return gdao.selectGallery(snum);
+    }
+
+    @Override
+    public int countGallery() {
+        return gdao.selectCountGallery();
+    }
+
+    @Override
+    public GalleryVO readOneGallery(String gno) {
+        return gdao.selectOneGallery(gno);
     }
 }

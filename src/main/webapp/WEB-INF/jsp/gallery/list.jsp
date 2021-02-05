@@ -34,34 +34,49 @@
 
 --%>
 
+<%-- 게시판, 자료실과는 달리 갤러리의 페이지당 게시물 수는 10이 아닌 24로 설정 --%>
+
 <fmt:parseNumber var="cp" value="${param.cp}"/>
 <%--<c:if test="${empty cp}"> <c:set var="cp" value="1"/> </c:if>--%>
-<fmt:parseNumber var="pp" value="10"/>
-<fmt:parseNumber var="pdcnt" value="${pdcnt}"/>
+<fmt:parseNumber var="pp" value="24"/>
+<fmt:parseNumber var="galcnt" value="${galcnt}"/>
 
 <fmt:parseNumber var="sp" integerOnly="true" value="${((cp - 1) / pp)}"/>
 <fmt:parseNumber var="sp" value="${sp * 10 + 1 }"/>
 <fmt:parseNumber var="ep" value="${sp + 9}"/>
 
-<fmt:parseNumber var="tp" value="${pdcnt/pp}" integerOnly="true"/>
-<c:if test="${(pdcnt % pp) > 0}">
+<fmt:parseNumber var="tp" value="${galcnt/pp}" integerOnly="true"/>
+<c:if test="${(galcnt % pp) > 0}">
     <fmt:parseNumber var="tp" value="${tp + 1}"/>
 </c:if>
 
-<fmt:parseNumber var="snum" value="${pdcnt - (cp - 1) * pp}" integerOnly="true"/>
+<fmt:parseNumber var="snum" value="${galcnt - (cp - 1) * pp}" integerOnly="true"/>
 
 <%-- 검색 여부에 따라 네비게이션 링크 출력을 다르게 함 --%>
-<%--일반 목록 출력 : /pds/list?cp=--%>
-<%--검색 후 목록 출력 : /pds/find?findtype=?&findkey=?&cp=?--%>
+<%--일반 목록 출력 : /gallery/list?cp=--%>
+<%--검색 후 목록 출력 : /gallery/find?findtype=?&findkey=?&cp=?--%>
 
-<c:set var="navlnk" value="/pds/list?cp="/>
+<c:set var="navlnk" value="/gallery/list?cp="/>
 <c:if test="${not empty param.findkey}">
-    <c:set var="navlnk" value="/pds/find?findtype=${param.findtype}&findkey=${param.findkey}&cp="/>
+    <c:set var="navlnk" value="/gallery/find?findtype=${param.findtype}&findkey=${param.findkey}&cp="/>
 </c:if>
+
+<%-- 이미지 출력을 위한 기본 주소 설정 --%>
+<%-- http://localhost/cdn/_thumb/small_글번호_파일명 --%>
+<c:set var="baseImgURL" value="http://localhost/cdn"/>
+<c:set var="thumbURL" value="${baseImgURL}/_thumb/small_"/>
+
+<%-- bootstrap의 card image 사용시
+     card박스의 크기는 240px (15rem)
+     따라서 , 섬네일 이미지의 크기는 220 * 220px로 설정
+     1920*1080 해상도에서는 card 박스는 한 행에 기본적으로 4개씩 배치할 수 있음
+     단, 작성자와 작성일 사이 간격이 좁아, 작성일이 아이디 아래에 출력되는 경우가 있음
+     해결책은 아이디 출력시 길이가 길면 말줄임으로 단축출력하면 됨 --%>
+
 
 <div id="main">
     <div class="margin30">
-        <h3><i class="bi bi-cloud-download-fill bidragup"></i>&nbsp;자료실</h3>
+        <h3><i class="bi bi-card-image bidragup"></i>&nbsp;갤러리</h3>
         <hr>
     </div>
 
@@ -76,46 +91,32 @@
                         <option value="userid">작성자</option>
                     </select>
                     <input type="text" name="findkey" id="findkey" class="form-control col-5">
-                    <button type="button" id="pdfindbtn" class="btn, btn-dark"><i class="bi bi-search bidragup"></i>검색하기</button>
+                    <button type="button" id="galfindbtn" class="btn, btn-dark"><i class="bi bi-search bidragup"></i>검색하기</button>
                 </div>
             </div>
             <div class="col-6 text-right">
-                <button type="button" id="newpd" class="btn btn-info"><i class="bi bi-plus-circle bidragup"></i>&nbsp;새글쓰기</button>
+                <button type="button" id="newgal" class="btn btn-info"><i class="bi bi-plus-circle bidragup"></i>&nbsp;새글쓰기</button>
            </div>
         </c:if>
     </div>
     <div class="row margin1050">
         <div class="col-12">
-            <table class="table table-striped tblines text-center table-hover">
-                <thead style="background: #dff0d8">
-                <tr>
-                    <th style="width: 7%">번호</th>
-                    <th>제목</th>
-                    <th style="width: 12%">작성자</th>
-                    <th style="width: 10%">작성일</th>
-                    <th style="width: 7%">추천</th>
-                    <th style="width: 7%">조회</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr class="text-danger">
-                    <th>공지</th>
-                    <th><span class="badge badge-danger">Hot</span> 삼성을 사시오! 십성가즈아!!! 삼멘! 이재용짱짱맨!</th>
-                    <th>Mr.shin</th>
-                    <th>2021.01.15</th>
-                    <th>999</th>
-                    <th>999</th>
-                </tr>
-                <c:forEach var="p" items="${pds}">
-                <tr>
-                    <td>${snum}</td><td><a href="/pds/view?pno=${p.pno}&cp=${cp}" class="colblack">${p.title}</a></td><td>${p.userid}</td><td>${fn:substring(p.regdate,0,10)}</td><td>${p.thumbs}</td><td>${p.views}</td>
-                    <c:set var="snum" value="${snum - 1}"/>
-                </tr>
+            <ul class="list-inline">
+                <c:forEach var="g" items="${gals}">
+                    <li class="list-inline-item" style="margin-bottom: 10px">
+                        <div class="card" style="width: 238px;">
+                            <img src="${thumbURL}${g.gno}_${fn:split(g.fnames,"[/]")[0]}" class="card-img-top" width="220" height="220" onclick="javascript:showimg('${g.gno}')" style="cursor: pointer">
+                            <div class="card-body">
+                                <h5 class="card-title">${g.title}</h5>
+                                <p class="card-text">${g.userid} <span style="float: right">${fn:substring(g.regdate,0,10)}</span></p>
+                                <p class="card-text"><i class="bi bi-eye"></i> ${g.views} <span style="float: right"><i class="bi bi-hand-thumbs-up"></i> ${g.thumbs}</span></p>
+                            </div>
+                        </div>
+                    </li>
                 </c:forEach>
-                </tbody>
-            </table>
+            </ul>
         </div>
-    </div>
+    </div> <!--게시판 테이블-->
     <div class="row">
         <div class="col-12">
             <ul class="pagination justify-content-center">

@@ -13,25 +13,11 @@
 <c:set var="newChar" value="
 " scope="application"/> <%-- value값에 엔터를 넣음 --%>
 
-<c:set var="atticon1" value="${pd.ftype1}"/>
-<c:if test="${pd.ftype1 ne 'zip' and pd.ftype1 ne 'jpg' and pd.ftype1 ne 'txt'}">
-    <c:set var="atticon1" value="file"/>
-</c:if>
-
-
-<c:set var="atticon2" value="${pd.ftype2}"/>
-<c:if test="${pd.ftype2 ne 'zip' and pd.ftype2 ne 'jpg' and pd.ftype2 ne 'txt'}">
-    <c:set var="atticon2" value="file"/>
-</c:if>
-
-<c:set var="atticon3" value="${pd.ftype3}"/>
-<c:if test="${pd.ftype3 ne 'zip' and pd.ftype3 ne 'jpg' and pd.ftype3 ne 'txt'}">
-    <c:set var="atticon3" value="file"/>
-</c:if>
+<c:set var="baseImgURL" value="http://localhost/cdn/"/>
 
 <div id="main">
     <div class="margin30">
-        <h3><i class="bi bi-chat-dots-fill" style="position: relative; top: -5px"></i>&nbsp;뷰</h3>
+        <h3><i class="bi bi-chat-dots-fill" style="position: relative; top: -5px"></i>&nbsp;갤러리</h3>
         <hr>
     </div>
     <div class="row margin1050">
@@ -43,7 +29,7 @@
         </div>
         <div class="col-6 text-right">
             <c:if test="${not empty UID}">
-                <button type="button" class="btn btn-light" id="newpd">
+                <button type="button" class="btn btn-light" id="newgal">
                     <i class="bi bi-plus-circle-fill bidragup"></i>새글쓰기</button>
             </c:if>
         </div>
@@ -52,26 +38,34 @@
 
     <div class="row margin1050">
         <table class="table">
-            <tr><th colspan="2" class="tblines2 tbbg1 text-center bg-light"><h2>${pd.title}</h2></th><tr> <!--제목-->
-            <tr class="tbbg2 font-weight-bold"><td>${pd.userid}</td><td class="text-right">${pd.regdate} / ${pd.thumbs} / ${pd.views}</td><tr> <!--작성자,작성일,조회수-->
-            <tr><th colspan="2" class="tbbg3 tblines2">${fn:replace(pd.contents,newChar,"<br>")}</th><tr> <!--본문-->
-            <tr><td class="text-left">첨부1</td><td><img src="/img/${atticon1}.png"><a href="/pds/down?pno=${pd.pno}&order=1">${pd.fname1}</a>  (${pd.fsize1}KB, ${pd.fdown1}회 다운로드함)</td></tr>
-            <c:if test="${not empty pd.fname2}">
-                <tr><td class="text-left">첨부2</td><td><img src="/img/${atticon2}.png"><a href="/pds/down?pno=${pd.pno}&order=2">${pd.fname2}</a> (${pd.fsize2}KB, ${pd.fdown2}회 다운로드함)</td></tr>
-            </c:if>
-            <c:if test="${not empty pd.fname2}">
-                <tr><td class="text-left">첨부3</td><td><img src="/img/${atticon3}.png"><a href="/pds/down?pno=${pd.pno}&order=3">${pd.fname3}</a> (${pd.fsize3}KB, ${pd.fdown3}회 다운로드함)</td></tr>
-            </c:if>
+            <tr><th colspan="2" class="tblines2 tbbg1 text-center bg-light"><h2>${gal.title}</h2></th><tr> <!--제목-->
+            <tr class="tbbg2 font-weight-bold"><td>${gal.userid}</td><td class="text-right">${gal.regdate} / ${gal.thumbs} / ${gal.views}</td><tr> <!--작성자,작성일,조회수-->
+            <tr><th colspan="2" class="tbbg3 tblines2">
+
+            <c:forEach begin="0" end="2" var="i" step="1">
+                <c:if test="${fn:split(gal.fnames,'[/]')[i] ne '-'}">
+                    <img src="${baseImgURL}${fn:split(gal.fnames,"[/]")[i]}" width="100%">
+                </c:if>
+            </c:forEach>
+
+            <p>${fn:replace(gal.contents,newChar,"<br>")}</p></th></tr><!--본문-->
+
+            <c:forEach begin="0" end="2" var="i" step="1">
+                <c:if test="${fn:split(gal.fnames,'[/]')[i] ne '-'}">
+                    <tr><td class="text-left">첨부${i+1}</td><td> ${fn:split(gal.fnames,"[/]")[i]}</a>  (${fn:split(gal.fsizes,"[/]")[i]}KB)</td></tr>
+                </c:if>
+            </c:forEach>
+
         </table>
     </div><!--본문글-->
 
     <div class="row margin1050">
         <div class="col-6">
                 <%--로그인 했고 이 글이 내가 작성한 글이라면?--%>
-            <c:if test="${not empty UID and UID eq pd.userid}">
-                <button type="button" class="btn btn-primary" id="uppdbtn">
+            <c:if test="${not empty UID and UID eq gal.userid}">
+                <button type="button" class="btn btn-primary" id="upgalbtn">
                     <i class="bi bi-check-circle bidragup"></i> 수정하기</button>
-                <button type="button" class="btn btn-danger" id="rmpdbtn">
+                <button type="button" class="btn btn-danger" id="rmgalbtn">
                     <i class="bi bi-x-circle bidragup"></i> 삭제하기</button>
             </c:if>
             </div>
@@ -81,14 +75,14 @@
                     <i class="bi bi-hand-thumbs-up bidragup"></i>추천하기
                 </button>
             </c:if>
-            <button type="button" class="btn btn-dark" id="listpdbtn">
+            <button type="button" class="btn btn-dark" id="listgalbtn">
                 <i class="bi bi-list bidragup"></i> 목록으로</button>
         </div>
     </div><!--버튼들-->
 
     <input type="hidden" id="pno" value="${param.pno}">
     <input type="hidden" id="cp" value="${param.cp}">
-    <input type="hidden" id="userid" value="${pd.userid}">
+    <input type="hidden" id="userid" value="${gal.userid}">
 
     <div class="row margin1050 mt-5">
         <h3><i class="bi bi-chat-square-dots-fill"></i>&nbsp;나도 한마디</h3>
@@ -139,7 +133,7 @@
                 <div class="form-group row justify-content-center">
                     <label class="pushtop50 text-primary font-weight-bold">${UID}</label>&nbsp;
                     <textarea id="reply" name="reply" rows="5" class="form-control col-7" style="resize: none"></textarea>&nbsp;&nbsp;
-                    <span><button type="button" id="pdcmtbtn" class="btn-dark pushtop50"><i class="bi bi-chat-text-fill bidragup"></i>댓글쓰기</button></span>
+                    <span><button type="button" id="galcmtbtn" class="btn-dark pushtop50"><i class="bi bi-chat-text-fill bidragup"></i>댓글쓰기</button></span>
                 </div>
                 <input type="hidden" name="pno" value="${param.pno}">
                 <input type="hidden" name="userid" id="uid" value="${UID}">

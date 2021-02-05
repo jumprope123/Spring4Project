@@ -161,3 +161,7 @@ insert into Gallery (title, userid, contents, fnames, fsizes, uuid) values ();
 select gno, title, userid, regdate, views, thumbs from Gallery order by gno desc ;
 
 select * from Gallery where gno = ?;
+
+select gno from Gallery order by gno desc limit 0,1;
+
+select AUTO_INCREMENT-1 gno from information_schema.TABLES where TABLE_NAME = 'Gallery';
