@@ -25,7 +25,7 @@
           p:driverClassName="${DRV}"
           p:url="${URL}"
           p:username="${USR}"
-          p:password="${PWD}" />
+          p:password="playground2020" />
 
     <!--mybaits 설정 #1-->
     <bean id="sqlSessionFactory"

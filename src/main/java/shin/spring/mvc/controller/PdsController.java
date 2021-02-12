@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import shin.spring.mvc.service.PdsService;
 import shin.spring.mvc.util.FileUpDownUtil;
@@ -41,12 +42,12 @@ public class PdsController {
     }
 
     //commons Fileupload로 구현한 자료실
-    @PostMapping("/pds/writeok") // 파일업로드
-    public String writeok(PdsVO pvo, HttpServletRequest req){
+    //@PostMapping("/pds/writeok") // 파일업로드
+    //public String writeok(PdsVO pvo, HttpServletRequest req){
 
         //업로드 처리 및 폼데이터 가져오기
-        FileUpDownUtil fud = new FileUpDownUtil();
-        Map<String,String> frmdata = fud.procUpload(req);
+      //  FileUpDownUtil fud = new FileUpDownUtil();
+       // Map<String,String> frmdata = fud.procUpload(req);
 
 //        System.out.println(frmdata.get("title"));
 //        System.out.println(frmdata.get("contents"));
@@ -60,12 +61,24 @@ public class PdsController {
 //        System.out.println(pvo.getTitle());
 
         // 업로드시 수집한 정보를 pvo에 담는 메서드 호출
-        psrv.newPds(frmdata, pvo);
+        //psrv.newPds(frmdata, pvo);
+
+        //return "redirect:/pds/list?cp=1";
+//    }
+
+
+//        MultipartFile로 구현한 자료실
+
+    @PostMapping("/pds/writeok")
+    public String writeok(PdsVO pvo, MultipartFile[] file){
+        psrv.newPds(pvo,file);
 
         return "redirect:/pds/list?cp=1";
+
     }
 
-    @GetMapping("/pds/view") // 본문글 출력
+
+@GetMapping("/pds/view") // 본문글 출력
     public ModelAndView view(String pno, ModelAndView mv){
         mv.setViewName("pds/view.tiles");
         mv.addObject("pd", psrv.readOnePds(pno));

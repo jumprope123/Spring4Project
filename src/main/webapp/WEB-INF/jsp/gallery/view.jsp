@@ -13,7 +13,8 @@
 <c:set var="newChar" value="
 " scope="application"/> <%-- value값에 엔터를 넣음 --%>
 
-<c:set var="baseImgURL" value="http://localhost/cdn/"/>
+<%--<c:set var="baseImgURL" value="http://localhost/cdn/"/>--%>
+<c:set var="baseImgURL" value="http://13.125.205.40:8447/cdn/" />
 
 <div id="main">
     <div class="margin30">
