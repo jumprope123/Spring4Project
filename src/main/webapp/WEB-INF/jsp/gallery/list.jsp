@@ -41,7 +41,7 @@
 <fmt:parseNumber var="pp" value="24"/>
 <fmt:parseNumber var="galcnt" value="${galcnt}"/>
 
-<fmt:parseNumber var="sp" integerOnly="true" value="${((cp - 1) / pp)}"/>
+<fmt:parseNumber var="sp" integerOnly="true" value="${((cp - 1) / 10)}"/>
 <fmt:parseNumber var="sp" value="${sp * 10 + 1 }"/>
 <fmt:parseNumber var="ep" value="${sp + 9}"/>
 
